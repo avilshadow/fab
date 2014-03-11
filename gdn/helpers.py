@@ -53,6 +53,6 @@ def set_fortress_db(host, db):
     conffile = '/opt/gdn/config/default.properties'
     db_port = '27017'
     sudo('sed -i "s/\(^database.name=\).*/\\1{0}/" {1}'.format(db, conffile))
-    sudo('sed -i "s/\(^database.host=\).*/\\1{}:{0}/" {1}'.format(host, db_port, conffile))
+    sudo('sed -i "s/\(^database.host=\).*/\\1{0}:{1}/" {2}'.format(host, db_port, conffile))
 
     
