@@ -6,7 +6,7 @@
     "activemq_host_port": "uakyivdev4:61616",
     "transcoding_db": "uakyivdev1",
     "fortress_artifact_template": "gdn-fortress-{version}-1.noarch.rpm",
-    "migration_artifact_template": "database-migration-1.0.0-database.zip"
+    "migration_artifact_template": "database-migration-1.0.0-database.zip",
     "elastic_engine": "external",
     "elastic_url": "10.0.26.68:9300"
 }
