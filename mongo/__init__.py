@@ -64,7 +64,7 @@ db.settings.update({_id: "gdn"},
 		"gdn.fileUrlCdn.cName": "http://uakyivopt02:20282",
 		"gdn.mq.inQueue": "adstream.yadn",
 		"gdn.elastic.engine": "%(elastic_engine)s",
-		"gdn.elastic.external.url": "%(elastic_url)s"
+		"gdn.elastic.external.url": ["%(elastic_url)s"]
 	}});
 
 db.settings.update({_id: "akka"},
