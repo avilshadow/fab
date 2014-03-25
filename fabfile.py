@@ -16,6 +16,8 @@ env.activemq_host_port = cfg['activemq_host_port']
 env.transcoding_db = cfg['transcoding_db']
 env.fortress_artifact_template = cfg['fortress_artifact_template']
 env.migration_artifact_template = cfg['migration_artifact_template']
+env.elastic_engine = cfg['elastic_engine']
+env.elastic_url = cfg['elastic_url']
 
 env.roledefs['gdn'] = env.gdn_hosts
 env.roledefs['mongo'] = [env.mongo_host]

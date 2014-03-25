@@ -27,7 +27,9 @@ def get_postmigrate():
 	return config_pattern % {
 	'activemq_host_port': env.activemq_host_port,
 	'transcoding_db': env.transcoding_db,
-	'akka': ','.join(['"akka.tcp://gdn@{0}:2552"'.format(x) for x in env.gdn_hosts])
+	'akka': ','.join(['"akka.tcp://gdn@{0}:2552"'.format(x) for x in env.gdn_hosts]),
+	'elastic_engine': env.elastic_engine,
+	'elastic_url': env.elastic_url
 	}
 
 config_pattern = '''
@@ -60,7 +62,9 @@ db.settings.update({_id: "gdn"},
 	{$set: {
 		"gdn.rest.bindHost": "0.0.0.0",
 		"gdn.fileUrlCdn.cName": "http://uakyivopt02:20282",
-		"gdn.mq.inQueue": "adstream.yadn"
+		"gdn.mq.inQueue": "adstream.yadn",
+		"gdn.elastic.engine": "%(elastic_engine)s",
+		"gdn.elastic.external.url": "%(elastic_url)s"
 	}});
 
 db.settings.update({_id: "akka"},
