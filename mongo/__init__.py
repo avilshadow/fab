@@ -46,8 +46,7 @@ if (cursor.hasNext()) {
 
 	var url = gdnConfig.gdn.transcodingdb.url;
 	if (url){
-		var new_url = url.replace("<host>", "%(transcoding_db)s");
-		db.settings.update({_id: "gdn"}, {$set: {"gdn.transcodingdb.url": new_url}});
+		db.settings.update({_id: "gdn"}, {$set: {"gdn.transcodingdb.url": "http://%(transcoding_db)s:5984/transcoding/_design/api/_rewrite/search/{SourceSpecDBDocID}/{System}/{Country}/{AgencyID}"}});
 	}
 
 	var newMq = gdnConfig.gdn.mq.serverURI;
@@ -60,7 +59,8 @@ if (cursor.hasNext()) {
 db.settings.update({_id: "gdn"},
 	{$set: {
 		"gdn.rest.bindHost": "0.0.0.0",
-		"gdn.fileUrlCdn.cName": "http://uakyivopt02:20282"
+		"gdn.fileUrlCdn.cName": "http://uakyivopt02:20282",
+		"gdn.mq.inQueue": "adstream.yadn"
 	}});
 
 db.settings.update({_id: "akka"},
