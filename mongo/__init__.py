@@ -22,6 +22,10 @@ def migrate():
     	run('''echo '{0}' > postmigrate.js'''.format(get_postmigrate()))
     	run('mongo localhost/{0} postmigrate.js'.format(env.mongo_db_name))
 
+@task
+@roles('mongo')
+def ppm():
+	print get_postmigrate()
 
 def get_postmigrate():
 	return config_pattern % {
@@ -72,4 +76,28 @@ db.settings.update({_id: "akka"},
 		"akka.remote.netty.tcp.port": NumberInt(2552),
 		"akka.cluster.seed-nodes" : [ %(akka)s ]
 	}});
+
+db.settings.update({_id: "gdn"},
+  {$set:
+    { 
+        "gdn.dispatcher.readyRecheckWaitTime": "10 s",
+    }});
+
+db.settings.update({_id: "gdn"},
+  {$set:
+    {
+      "gdn.dispatcher.processingTimeoutChecker.actionTimeout": "1 min",
+      "gdn.dispatcher.processingTimeoutChecker.actionStatusTimeout": "1 min",
+      "gdn.dispatcher.processingTimeoutChecker.frequency": "1 min",
+    }});
+
+db.settings.update({_id: "gdn"},
+  {$set:
+    { 
+        "gdn.cleanup.frequency": "1 min",
+    }});
+
+db.workflow_action_type.update({}, {$set: {"rules.0.default": 1}},false, true);
+
+
 '''
