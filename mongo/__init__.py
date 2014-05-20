@@ -66,6 +66,7 @@ db.settings.update({_id: "gdn"},
 	{$set: {
 		"gdn.rest.bindHost": "0.0.0.0",
 		"gdn.fileUrlCdn.cName": "http://uakyivopt02:20282",
+		"gdn.fileUrlCdn.enabled": true,
 		"gdn.mq.inQueue": "adstream.yadn",
 		"gdn.elastic.engine": "%(elastic_engine)s",
 		"gdn.elastic.external.url": ["%(elastic_url)s"]
@@ -98,6 +99,6 @@ db.settings.update({_id: "gdn"},
     }});
 
 db.workflow_action_type.update({}, {$set: {"rules.0.default": 1}},false, true);
-
+db.settings.update({"_id": "gdn"},{$set: {"gdn.fileUrl.cacheTTL":"1 s"}});
 
 '''
